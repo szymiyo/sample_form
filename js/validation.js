@@ -10,74 +10,62 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-// Definicja walidacji sprawdzajaca czy imie sklada sie tylko z liter
-jQuery.validator.addMethod("just_letters_name", function(value, element) {
-    return this.optional(element) || /^[A-Za-z]+$/.test(value);
-}, "Twoje imię zawiera niedozwolony znak.");
 
-// Definicja walidacji sprawdzajaca czy nazwisko sklada sie tylko z liter
-jQuery.validator.addMethod("just_letters_surname", function(value, element) {
-    return this.optional(element) || /^[A-Za-z]+$/.test(value);
-}, "Twoje nazwisko zawiera niedozwolony znak.");
+// Funkcja walidująca po naciśnięciu przycisku "Wyślij"
 
-$(document).ready(function() {
-    $("#basic-form").validate({
-      rules: {
-        name : {
-            // Pole nie może być puste
-            required: true,
-            // Minimalna ilość znaków wynosi 3
-            minlength: 3,
-            // Wykorzystanie zdefiniowanej walidacji
-            just_letters_name: true
-        },
-        surname: {
-            // Pole nie może być puste
-            required: true,
-            // Minimalna ilość znaków wynosi 3
-            minlength: 3,
-            // Wykorzystanie zdefiniowanej walidacji
-            just_letters_surname: true
-        },
-        phone : {
-            // Pole nie może byćpuste
-            required: true,
-            // Pole może zawierać tylko cyfry
-            pattern: /^[0-9]+$/
-        },
-        email: {
-            // Pole wymagane
-            required: true,
-            email: true
-        },
-      },
-      //Wiadomości walidacji
-      messages : {
-        name: {
-            required: "Pole nie może być puste.",
-            minlength: "Imię musi zawierać co najmniej 3 znaki."
-        },
-        surname: {
-            required: "Pole nie może być puste.",
-            minlength: "Nazwisko musi zawierać co najmniej 3 znaki."
-        },
-        phone: {
-            required: "Pole nie może być puste.",
-            pattern: "Zły format numeru telefonu."
-        },
-        email: {
-            required: "Pole nie może być puste.",
-            email: "Zły format e-mail."
-        },
-      }
-    });
-  });
+$('#submit').on('click', function() {
+    valid = true;   
 
-  // Funkcja sprawdzająca, czy przynajmniej 1 checkbox jest zaznaczony
-  $("#basic-form").submit(function(){
-    var checked = $("#basic-form input:checked").length > 0;
-    if (!checked){
-        alert("Please check at least one checkbox");
-        return false;
+    // Warunek, aby pole nie mogło być puste
+    if ($('#name').val().length == '') {
+
+        alert ("Wprowadź swoje imię.");
+        valid = false;
     }
+
+    //Warunek sprawdzający, czy w imieniu znajdują się znaki inne niż litery
+    if ($('#name').val().match(/^[a-zA-Z\s]+$/)) {
+        valid= true;
+    } else {
+        alert ("Imię zawiera niedozwolone znaki.");
+         valid = false;
+    }
+
+    // Warunek, aby pole nie mogło być puste (inna metoda sprawdzenia)
+    if ($('#surname').val() <= 0) {
+        alert ("Wprowadź swoje nazwisko.");
+         valid = false;
+    } 
+
+     //Warunek sprawdzający, czy w nazwisku znajdują się znaki inne niż litery
+     if ($('#name').val().match(/^[a-zA-Z\s]+$/)) {
+        valid= true;
+    } else {
+        alert ("Nazwisko zawiera niedozwolone znaki.");
+         valid = false;
+    }
+
+    // Warunek, aby pole nie mogło być puste
+    if ($('#phone').val() == '') {
+        alert ("Wprowadź swój numer telefonu.");
+         valid = false;
+    }   
+    // Warunek, aby pole zawierało tylko cyfry
+    if ($('#phone').val().match(/^[a-zA-Z\s]+$/)) {
+        alert ("Wprowadź swój numer telefonu.");
+         valid = false;
+    }   
+
+    // Warunek, aby pole nie mogło być puste
+    if ($('#email').val() == '') {
+        alert ("Wprowadź swoj e-mail.");
+         valid = false;
+    } 
+    
+    //Warunek sprawdzajacy, czy wartosc ma postac xyz@domain.com
+    if ($('#email').val().match(/^\S+@\S+\.\S+$/)) {
+        alert ("Wprowadź swoj e-mail.");
+         valid = false;
+    }
+
 });

@@ -21,20 +21,23 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
-	
 </head>
 <body>
 
 	<section id="task-frontend">
 
-		<form action="/" id="basic-form">
+		<form action="index.html" id="basic-form">
 			<div class="form_container">
 				<h1>Formularz rekrutacyjny</h1>
 				<div class="inputs">
-					<input type="text" placeholder="Imię" name="name" required>
-					<input type="text" placeholder="Nazwisko" name="surname" required>
-					<input type="tel" placeholder="Numer Telefonu" name="phone" required>
-					<input type="email" placeholder="e-mail" name="email" required>
+					<input type="text" id="name" placeholder="Imię" name="name">
+					<div id="error_msg"></div>
+					<input type="text" id ="surname" placeholder="Nazwisko" name="surname">
+					<div id="error_msg"></div>
+					<input type="tel" id="phone" placeholder="Numer Telefonu" name="phone">
+					<div id="error_msg"></div>
+					<input type="email" id="email" placeholder="e-mail" name="email">
+					<div id="error_msg"></div>
 				</div>
 				<p>Sekcje, które Cię interesują:</p>
 				<div class="sections">
@@ -57,7 +60,7 @@
 						<label for="inne"><input type="checkbox" id="inne" name="grafika">inne</label>
 					</div>
 				</div>
-				<button type="submit">Wyślij</button>
+				<button id="submit" type="submit">Wyślij</button>
 			</div>
 		</form>
 
