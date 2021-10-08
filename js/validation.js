@@ -47,6 +47,18 @@ $('#submit').on('click', function() {
     }
 
     // Warunek, aby pole nie mogło być puste
+    if ($('#email').val() == '') {
+        alert ("Wprowadź swoj e-mail.");
+         valid = false;
+    } 
+    
+    //Warunek sprawdzajacy, czy wartosc ma postac xyz@domain.com
+    if ($('#email').val().match(/^\S+@\S+\.\S+$/)) {
+        alert ("Tak nie wygląda email.");
+         valid = false;
+    }
+
+    // Warunek, aby pole nie mogło być puste
     if ($('#phone').val() == '') {
         $('#error_msg_phone').html('Wprowadź swój numer telefonu.');
         $('#error_msg_phone').css('color', 'red');
@@ -61,18 +73,6 @@ $('#submit').on('click', function() {
         $('#error_msg_phone').css('color', 'red');
         $('#error_msg_phone').css('margin-top', '15px');
         return false;
-    }
-
-    // Warunek, aby pole nie mogło być puste
-    if ($('#email').val() == '') {
-        alert ("Wprowadź swoj e-mail.");
-         valid = false;
-    } 
-    
-    //Warunek sprawdzajacy, czy wartosc ma postac xyz@domain.com
-    if ($('#email').val().match(/^\S+@\S+\.\S+$/)) {
-        alert ("Tak nie wygląda email.");
-         valid = false;
     }
 
 });
