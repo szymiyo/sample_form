@@ -18,7 +18,6 @@ $('#submit').on('click', function() {
 
     // Warunek, aby pole nie mogło być puste
     if ($('#name').val().length == '') {
-
         alert ("Wprowadź swoje imię.");
         valid = false;
     }
@@ -38,7 +37,7 @@ $('#submit').on('click', function() {
     } 
 
      //Warunek sprawdzający, czy w nazwisku znajdują się znaki inne niż litery
-     if ($('#name').val().match(/^[a-zA-Z\s]+$/)) {
+     if ($('#surname').val().match(/^[a-zA-Z\s]+$/)) {
         valid= true;
     } else {
         alert ("Nazwisko zawiera niedozwolone znaki.");
@@ -64,7 +63,7 @@ $('#submit').on('click', function() {
     
     //Warunek sprawdzajacy, czy wartosc ma postac xyz@domain.com
     if ($('#email').val().match(/^\S+@\S+\.\S+$/)) {
-        alert ("Wprowadź swoj e-mail.");
+        alert ("Tak nie wygląda email.");
          valid = false;
     }
 
