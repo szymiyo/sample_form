@@ -18,8 +18,10 @@ $('#submit').on('click', function() {
 
     // Warunek, aby pole nie mogło być puste
     if ($('#name').val().length == '') {
-        alert ("Wprowadź swoje imię.");
-        valid = false;
+        $('#error_msg_name').html('Wprowadź swoje imię.');
+        $('#error_msg_name').css('color', 'red');
+        $('#error_msg_name').css('margin-top', '15px');
+        return false;
     }
 
     //Warunek sprawdzający, czy w imieniu znajdują się znaki inne niż litery
@@ -46,14 +48,20 @@ $('#submit').on('click', function() {
 
     // Warunek, aby pole nie mogło być puste
     if ($('#phone').val() == '') {
-        alert ("Wprowadź swój numer telefonu.");
-         valid = false;
+        $('#error_msg_phone').html('Wprowadź swój numer telefonu.');
+        $('#error_msg_phone').css('color', 'red');
+        $('#error_msg_phone').css('margin-top', '15px');
+        return false;
     }   
     // Warunek, aby pole zawierało tylko cyfry
-    if ($('#phone').val().match(/^[a-zA-Z\s]+$/)) {
-        alert ("Wprowadź swój numer telefonu.");
-         valid = false;
-    }   
+    if ($('#phone').val().match(/^[0-9]*$/)) {
+        return true;
+    }   else {
+        $('#error_msg_phone').html('Numer zawiera niedozwolone znaki.');
+        $('#error_msg_phone').css('color', 'red');
+        $('#error_msg_phone').css('margin-top', '15px');
+        return false;
+    }
 
     // Warunek, aby pole nie mogło być puste
     if ($('#email').val() == '') {
